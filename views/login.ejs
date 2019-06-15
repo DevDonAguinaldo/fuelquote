@@ -1,0 +1,17 @@
+<% include partials/headerlogin %>
+
+<div class="ui main text container segment" id="container">
+    <div class="ui huge header" style="text-align: center;">LOG IN</div>
+    <form class="ui form" action="/login" method="POST">
+        <div class="field">
+            <input type="text" name="username" placeholder="Userame">
+        </div>
+        <div class="field">
+            <input type="password" name="password" placeholder="Password" required>
+        </div>
+        <button type="text" class="ui green inverted button">Submit</button>
+        <a href="/register" class="ui blue inverted button">Register</a>
+    </form>
+</div>
+
+<% include partials/footer %>

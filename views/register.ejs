@@ -1,0 +1,26 @@
+<% include partials/headerlogin %>
+
+<div class="ui main text container segment" id="container">
+    <div class="ui huge header" style="text-align: center;">REGISTER</div>
+    <form class="ui form" action="/register" method="POST">
+        <div class="field">
+            <input type="text" name="registerfirstname" placeholder="First Name">
+        </div>
+        <div class="field">
+            <input type="text" name="registerlastname" placeholder="Last Name">
+        </div>
+        <div class="field">
+            <input type="text" name="registerusername" placeholder="Username">
+        </div>
+        <div class="field">
+            <input type="email" name="registeremail" placeholder="Email Address">
+        </div>
+        <div class="field">
+            <input type="password" name="registerpassword" placeholder="Password" required>
+        </div>
+        <button type="submit" class="ui green inverted button">Submit</button>
+        <a href="/login" class="ui red inverted button">Cancel</a>
+    </form>
+</div>
+
+<% include partials/footer %>
