@@ -9,7 +9,14 @@ const express               = require('express'),
 
 // MIDDLEWARE
 mongoose.set('useNewUrlParser', true); 
-mongoose.connect('mongodb://localhost/clientinfo'); // mongo connection
+mongoose.connect('mongodb+srv://daguinal:#Jasmine3@fuelquote-clients-ntojl.mongodb.net/test?retryWrites=true&w=majority', {
+    useNewUrlParser: true,
+    useCreateIndex: true
+}).then(() => {
+    console.log("connected to client database - mongodb atlas");
+}).catch(err => {
+    console.log('ERROR:', err.message);
+}); // mongo connection
 const app = express();
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
