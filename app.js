@@ -54,7 +54,7 @@ app.post("/register", (req, res) => {
             return res.render('register');
         } 
         passport.authenticate("local")(req, res, function() {
-            res.redirect('/home');
+            res.redirect('/');
         });
         res.redirect("/login");
     });
