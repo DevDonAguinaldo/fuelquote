@@ -4,10 +4,14 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DevDonAguinaldo/cosc4353_project"
   },
   "author": "Don",
-  "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
     "ejs": "^2.6.1",
@@ -18,5 +22,11 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^5.0.1"
-  }
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "license": "MIT"
 }

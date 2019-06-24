@@ -1,0 +1,6 @@
+{
+    "name": "Fuel Quote Project",
+    "description": "Project for COSC4353",
+    "repository": "https://github.com/DevDonAguinaldo/cosc4353_project",
+    "keywords": ["node", "express", "static"]
+}

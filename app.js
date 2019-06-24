@@ -25,6 +25,8 @@ passport.use(new LocalStrategy(Client.authenticate()));
 passport.serializeUser(Client.serializeUser());
 passport.deserializeUser(Client.deserializeUser());
 
+app.set('port', (process.env.PORT || 3030));
+
 // ROUTES
 app.get("/", (req, res) => {
     res.redirect('login');
@@ -75,16 +77,7 @@ app.get("/logout", (req, res) => {
     res.redirect('/login');
 });
 
-// LOGOUT PROCESS
-// function isLoggedIn(req, res, next) {
-//     if (req.isAuthenticated()) { 
-//         return next(); 
-//     } else {
-//         res.redirect("/login");
-//     }
-// }
-
 // SERVER RESPONSE
-app.listen(3030, () => {
-    console.log('FuelQuote server initialized on Port 3030');
+app.listen(app.get('port'), () => {
+    console.log('FuelQuote server initialized on ', app.get('port'));
 });
