@@ -52,10 +52,11 @@ app.post("/register", (req, res) => {
         if (err) {
             console.log(err);
             return res.render('register');
-        } 
-        passport.authenticate("local")(req, res, function() {
-            res.redirect('/');
-        });
+        } else {
+            passport.authenticate("local")(req, res, function() {
+                res.redirect('/');
+            });
+        }
         res.redirect("/login");
     });
 });
