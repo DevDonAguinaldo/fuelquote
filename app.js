@@ -33,7 +33,7 @@ passport.serializeUser(Client.serializeUser());
 passport.deserializeUser(Client.deserializeUser());
 
 // ROUTES
-app.get("/", async (req, res) => {
+app.get("/", (req, res) => {
     res.redirect('login');
 });
 
