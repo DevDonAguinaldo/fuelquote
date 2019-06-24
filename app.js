@@ -83,6 +83,6 @@ app.get("/logout", (req, res) => {
 });
 
 // SERVER RESPONSE
-app.listen(3030, () => {
+app.listen(process.env.PORT || 3030, () => {
     console.log('FuelQuote server listening on port 3030');
 });
