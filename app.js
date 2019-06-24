@@ -9,7 +9,7 @@ const express               = require('express'),
 
 // MIDDLEWARE
 mongoose.set('useNewUrlParser', true); 
-mongoose.connect('mongodb+srv://daguinal:#Jasmine3@fuelquote-clients-ntojl.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://daguinaldo:Jasmine3@fuelquote-clients-ntojl.mongodb.net/test?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useCreateIndex: true
 }).then(() => {
