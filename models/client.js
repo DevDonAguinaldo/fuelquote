@@ -1,9 +1,10 @@
 // DEPENDENCIES
 const passportLocalMongoose = require('passport-local-mongoose'),
-                   mongoose = require('mongoose');
+      mongoose              = require('mongoose');
 
 // SCHEMAS
 var ClientSchema = new mongoose.Schema({
+    newAcc: { type: Boolean, default: true },
     username: String,
     name: String,
     password: String,

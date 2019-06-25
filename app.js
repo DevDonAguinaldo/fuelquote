@@ -2,13 +2,11 @@
 const express               = require('express'),
       bodyParser            = require('body-parser'),
       mongoose              = require('mongoose'),
-      Client                = require('./models/client'),
       passport              = require('passport'),
-      LocalStrategy         = require('passport-local'),
-      passportLocalMongoose = require('passport-local-mongoose');
+      passportLocalMongoose = require('passport-local-mongoose'),
+      PORT                  = process.env.PORT || 3030;
 
 // MIDDLEWARE
-mongoose.set('useNewUrlParser', true); 
 mongoose.connect('mongodb+srv://daguinaldo:Jasmine3@fuelquote-clients-ntojl.mongodb.net/test?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useCreateIndex: true
@@ -16,73 +14,23 @@ mongoose.connect('mongodb+srv://daguinaldo:Jasmine3@fuelquote-clients-ntojl.mong
     console.log("connected to client database - mongodb atlas");
 }).catch(err => {
     console.log('ERROR:', err.message);
-}); // mongo connection
+}); // mongodb connection
+
 const app = express();
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(require("express-session")({
     secret: "This is a secret",
     resave: false,
     saveUninitialized: false
 }));
-passport.use(new LocalStrategy(Client.authenticate()));
-passport.serializeUser(Client.serializeUser());
-passport.deserializeUser(Client.deserializeUser());
+app.use(passport.initialize());
+app.use(passport.session());
 
 // ROUTES
-app.get("/", (req, res) => {
-    res.redirect('login');
-});
-
-// CLIENT REGISTRATION PAGE
-app.get("/register", (req, res) => {
-    res.render('register');
-});
-
-// CLIENT REGISTRATION PAGE - POST
-app.post("/register", (req, res) => {
-    Client.register(new Client({
-        username: req.body.registerusername,
-        name: `${req.body.registerfirstname} ${req.body.registerlastname}`,
-        email: req.body.registeremail
-    }), req.body.registerpassword, (err, client) => {
-        if (err) {
-            console.log(err);
-            return res.render('register');
-        } 
-        passport.authenticate("local")(req, res, function() {
-            res.send("Registration Complete!");
-        });
-        res.redirect("/login");
-    });
-});
-
-// HOME PAGE - REQUIRES LOGIN
-app.get("/home", (req, res) => {
-    res.render('home');
-});
-
-// LOGIN PAGE
-app.get("/login", (req, res) => {
-    res.render('login');
-});
-
-// LOGIN PAGE - AUTHENTICATE
-app.post("/login", passport.authenticate("local", {
-    successRedirect: "/home",
-    failureRedirect: "/login"
-}), (req, res) => {});
-
-// LOGOUT 
-app.get("/logout", (req, res) => {
-    req.logout();
-    res.redirect('/login');
-});
+app.use('/', require('./routes/index'));
+app.use('/clients', require('./routes/clients'));
 
 // SERVER RESPONSE
-app.listen(process.env.PORT || 3030, () => {
-    console.log('FuelQuote server listening on port 3030');
-});
+app.listen(PORT, () => { console.log('FuelQuote server listening on port', PORT) });
