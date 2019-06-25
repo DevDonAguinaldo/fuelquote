@@ -4,10 +4,11 @@ const express               = require('express'),
       mongoose              = require('mongoose'),
       passport              = require('passport'),
       passportLocalMongoose = require('passport-local-mongoose'),
+      URL                   = process.env.MONGODB_URI || "mongodb://localhost/clientinfo",
       PORT                  = process.env.PORT || 3030;
 
 // MIDDLEWARE
-mongoose.connect('mongodb+srv://daguinaldo:Jasmine3@fuelquote-clients-ntojl.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect(URL, {
     useNewUrlParser: true,
     useCreateIndex: true
 }).then(() => {
