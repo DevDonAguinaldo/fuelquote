@@ -5,3 +5,19 @@
 .btns {
     text-align: center;
 }
+
+.alert-error {
+    color: red;
+    background-color: #ffc9c9;
+    padding: 5px;
+    margin-bottom: 1em;
+    border-radius: 5px;
+}
+
+.alert-success {
+    color: green;
+    background-color: lightgreen;
+    padding: 5px;
+    margin-bottom: 1em;
+    border-radius: 5px;
+} 

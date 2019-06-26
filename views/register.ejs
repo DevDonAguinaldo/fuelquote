@@ -2,19 +2,21 @@
 
 <div class="ui main text container segment" id="container">
     <div class="ui huge header" style="text-align: center;">REGISTER</div>
+    <%if(locals.message) {%>
+        <%if(message.success) {%>
+            <div class="alert alert-success" role="alert">
+                <p><i class="check icon"></i><%=message.success%></p>
+            </div>
+        <%} else {%>
+            <div class="alert alert-error" role="alert">
+                <p><i class="exclamation icon"></i><%=message.error%></p>
+            </div>
+        <%}%>
+    <%}%>
     <form class="ui form" action="/clients/register" method="POST">
-        <%# <div class="field">
-            <input type="text" name="registerfirstname" placeholder="First Name">
-        </div>
-        <div class="field">
-            <input type="text" name="registerlastname" placeholder="Last Name">
-        </div> %>
         <div class="field">
             <input type="text" name="registerusername" placeholder="Username">
         </div>
-        <%# <div class="field">
-            <input type="email" name="registeremail" placeholder="Email Address">
-        </div> %>
         <div class="field">
             <input type="password" name="registerpassword" placeholder="Password" required>
         </div>
