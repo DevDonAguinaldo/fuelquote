@@ -9,9 +9,13 @@
     <body>
         <div class="ui fixed inverted menu">
             <div class="ui container">
-                <div class="header item">FuelQuote</div>
-                <div class="right menu">
-                    <a href="/clients/login" class="item">Logout</a>
-                </div>
+                <div class="header item"><i class="quote left icon"></i>FuelQuote</div>
+                <%if(currentUser && currentUser.newAcc === false) {%>
+                <a class="item">Get A Quote</a>
+                    <div class="right menu">
+                        <a class="item"><i class="user circle icon"></i><%=currentUser.username%></a>
+                        <a href="/clients/logout" class="item">Logout</a>
+                    </div>
+                <%}%>
             </div>
         </div>

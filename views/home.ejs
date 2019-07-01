@@ -1,13 +1,38 @@
 <% include partials/header %>
 
-<div class="ui container segment" id="container">
-    <div class="ui first huge header" style="text-align: center;">
-        Welcome <%=client.username%>!
-    </div>
+<div class="ui container" id="flash-messages">
+    <%if(locals.message) {%>
+        <div class="alert alert-success" role="alert">
+            <span><i class="check icon"></i><%=message.success%></span>
+        </div>
+    <%}%>
 </div>
 
-<div class="ui main text container segment">
-    <div class="ui huge header" style="text-align: center;">Get A Quote</div>
+<div class="ui container segment">
+    <div class="ui first huge header" style="text-align: center;">
+        My Dashboard
+    </div>
+    <div>
+        <div class="ui horizontal segments">
+            <div class="ui segment">
+                <strong>Name: </strong><%=client.name%>
+            </div>
+            <div class="ui segment">
+                <strong>Email: </strong><%=client.email%>
+            </div>
+            <div class="ui segment">
+                <strong>Username: </strong><%=client.username%>
+            </div>
+        </div>
+        <h2>Quote History</h2>
+        <div class="ui segments">
+            <%if(client.quoteHistory === undefined || client.quoteHistory == 0) {%>
+                <div class="ui segment">
+                    <em>There is currently no quote history.</em>
+                </div>
+            <%}%>
+        </div>
+    </div>
 </div>
 
 <% include partials/footer %>

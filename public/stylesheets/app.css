@@ -1,12 +1,9 @@
-#container {
-    margin-top: 100px;
-}
+#container, #flash-messages { margin-top: 50px; }
 
-.btns {
-    text-align: center;
-}
+.btns { text-align: center; }
 
-.alert-error {
+.alert-error,
+#profileManagement {
     color: red;
     background-color: #ffc9c9;
     padding: 5px;
@@ -21,3 +18,8 @@
     margin-bottom: 1em;
     border-radius: 5px;
 } 
+
+.firstname, .lastname {
+    width: 50%;
+    float: left;
+}

@@ -1,25 +1,39 @@
-<% include partials/headerlogin %>
+<% include partials/header %>
 
 <div class="ui main text container segment" id="container">
     <div class="ui huge header" style="text-align: center;">REGISTER</div>
     <%if(locals.message) {%>
         <%if(message.success) {%>
             <div class="alert alert-success" role="alert">
-                <p><i class="check icon"></i><%=message.success%></p>
+                <span><i class="check icon"></i><%=message.success%></span>
             </div>
         <%} else {%>
             <div class="alert alert-error" role="alert">
-                <p><i class="exclamation icon"></i><%=message.error%></p>
+                <span><i class="exclamation icon"></i><%=message.error%></span>
             </div>
         <%}%>
     <%}%>
-    <form class="ui form" action="/clients/register" method="POST">
+    <form class="ui form" action="/register" method="POST">
+        <%# Username %>
         <div class="field">
-            <input type="text" name="registerusername" placeholder="Username">
+            <input type="text" name="registerusername" placeholder="Username" required>
         </div>
+        <%# Initial Password %>
         <div class="field">
             <input type="password" name="registerpassword" placeholder="Password" required>
         </div>
+        <%# Confirmation Password %>
+        <div class="field">
+            <input type="password" name="confirmpassword" placeholder="Confirm Password" required>
+        </div>
+        <%# Terms And Conditions %>
+        <div class="field">
+            <div class="ui checkbox">
+                <input type="checkbox" name="termsandconditions" required>
+                <label for="termsandconditions">I agree to the Terms and Conditions.</label>                
+            </div>
+        </div>
+        <%# Buttons %>
         <button type="submit" class="ui green inverted button">Submit</button>
         <a href="/" class="ui red inverted button">Cancel</a>
     </form>

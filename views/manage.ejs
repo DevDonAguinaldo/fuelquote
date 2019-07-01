@@ -1,0 +1,172 @@
+<% include partials/header %>
+
+<div class="ui main text container segment" id="container">
+    <div class="ui huge header" style="text-align: center;">PROFILE MANAGEMENT</div>
+    <%if(locals.message) {%>
+        <%if(message.error) {%>
+            <div class="alert alert-error" role="alert">
+                <span><i class="exclamation icon"></i><%=message.error%></span>
+            </div>
+        <%}%>
+    <%}%>
+    <form class="ui form" action="/clients/manage" method="POST">
+        <%# Username %>
+        <div class="field">
+            <input type="text" name="registerusername" placeholder="Username" value="<%=client.username%>" readonly>
+        </div>
+        <%# First Name And Last Name %>
+        <div class="two fields">
+            <div class="field">
+                <input type="text" name="registerfirstname" placeholder="First Name" required>
+            </div>
+            <div class="field">
+                <input type="text" name="registerlastname" placeholder="Last Name" required>
+            </div>
+        </div>
+        <%# Home Address %>
+        <div class="fields">
+            <div class="eight wide field">
+                <input type="text" name="registerhomeaddress" placeholder="Address 1" required>
+            </div>
+            <div class="four wide field">
+                <input type="text" name="registercity" placeholder="City" required>
+            </div>
+            <div class="two wide field">
+                <select class="ui search dropdown" name="registerstate" required>
+                    <option value="">Select State</option>
+                    <option value="AL">AL</option>
+                    <option value="AK">AK</option>
+                    <option value="AR">AR</option>
+                    <option value="CA">CA</option>
+                    <option value="CO">CO</option>
+                    <option value="CT">CT</option>
+                    <option value="DE">DE</option>
+                    <option value="DC">DC</option>
+                    <option value="FL">FL</option>
+                    <option value="GA">GA</option>
+                    <option value="GU">GU</option>
+                    <option value="HI">HI</option>
+                    <option value="ID">ID</option>
+                    <option value="IL">IL</option>
+                    <option value="IN">IN</option>
+                    <option value="IA">IA</option>
+                    <option value="KS">KS</option>
+                    <option value="KY">KY</option>
+                    <option value="LA">LA</option>
+                    <option value="ME">ME</option>
+                    <option value="MD">MD</option>
+                    <option value="MA">MA</option>
+                    <option value="MI">MI</option>
+                    <option value="MN">MN</option>
+                    <option value="MS">MS</option>
+                    <option value="MO">MO</option>
+                    <option value="MT">MT</option>
+                    <option value="NE">NE</option>
+                    <option value="NV">NV</option>
+                    <option value="NH">NH</option>
+                    <option value="NJ">NJ</option>
+                    <option value="NM">NM</option>
+                    <option value="NY">NY</option>
+                    <option value="NC">NC</option>
+                    <option value="ND">ND</option>
+                    <option value="OH">OH</option>
+                    <option value="OK">OK</option>
+                    <option value="OR">OR</option>
+                    <option value="PA">PA</option>
+                    <option value="RI">RI</option>
+                    <option value="SC">SC</option>
+                    <option value="SD">SD</option>
+                    <option value="TN">TN</option>
+                    <option value="TX">TX</option>
+                    <option value="UT">UT</option>
+                    <option value="VT">VT</option>
+                    <option value="VA">VA</option>
+                    <option value="WA">WA</option>
+                    <option value="WV">WV</option>
+                    <option value="WI">WI</option>
+                    <option value="WY">WY</option>
+                </select>
+            </div>
+            <div class="four wide field">
+                <input type="text" name="registerzip" placeholder="Zip" required>
+            </div>
+        </div>
+        <%# Second Optional Address %>
+        <div class="fields">
+            <div class="eight wide field">
+                <input type="text" name="registerhomeaddress2" placeholder="Address 2">
+            </div>
+            <div class="four wide field">
+                <input type="text" name="registercity2" placeholder="City">
+            </div>
+            <div class="two wide field">
+                <select class="ui search dropdown" name="registerstate2">
+                    <option value="">Select State</option>
+                    <option value="AL">AL</option>
+                    <option value="AK">AK</option>
+                    <option value="AR">AR</option>
+                    <option value="CA">CA</option>
+                    <option value="CO">CO</option>
+                    <option value="CT">CT</option>
+                    <option value="DE">DE</option>
+                    <option value="DC">DC</option>
+                    <option value="FL">FL</option>
+                    <option value="GA">GA</option>
+                    <option value="GU">GU</option>
+                    <option value="HI">HI</option>
+                    <option value="ID">ID</option>
+                    <option value="IL">IL</option>
+                    <option value="IN">IN</option>
+                    <option value="IA">IA</option>
+                    <option value="KS">KS</option>
+                    <option value="KY">KY</option>
+                    <option value="LA">LA</option>
+                    <option value="ME">ME</option>
+                    <option value="MD">MD</option>
+                    <option value="MA">MA</option>
+                    <option value="MI">MI</option>
+                    <option value="MN">MN</option>
+                    <option value="MS">MS</option>
+                    <option value="MO">MO</option>
+                    <option value="MT">MT</option>
+                    <option value="NE">NE</option>
+                    <option value="NV">NV</option>
+                    <option value="NH">NH</option>
+                    <option value="NJ">NJ</option>
+                    <option value="NM">NM</option>
+                    <option value="NY">NY</option>
+                    <option value="NC">NC</option>
+                    <option value="ND">ND</option>
+                    <option value="OH">OH</option>
+                    <option value="OK">OK</option>
+                    <option value="OR">OR</option>
+                    <option value="PA">PA</option>
+                    <option value="RI">RI</option>
+                    <option value="SC">SC</option>
+                    <option value="SD">SD</option>
+                    <option value="TN">TN</option>
+                    <option value="TX">TX</option>
+                    <option value="UT">UT</option>
+                    <option value="VT">VT</option>
+                    <option value="VA">VA</option>
+                    <option value="WA">WA</option>
+                    <option value="WV">WV</option>
+                    <option value="WI">WI</option>
+                    <option value="WY">WY</option>
+                </select>
+            </div>
+            <div class="four wide field">
+                <input type="text" name="registerzip2" placeholder="Zip">
+            </div>
+        </div>
+        <%# Email Address %>
+        <div class="field">
+            <input type="email" name="registeremail" placeholder="Email" required>
+        </div>
+        <%# Buttons %>
+        <button type="submit" class="ui green inverted button">Submit</button>
+        <a href="/login" class="ui red inverted button">Cancel</a>
+    </form>
+</div>
+
+<% include partials/footer %>

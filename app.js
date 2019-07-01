@@ -14,7 +14,7 @@ mongoose.connect(URL, {
     useNewUrlParser: true,
     useCreateIndex: true
 }).then(() => {
-    console.log("connected to client database - mongodb atlas");
+    console.log("Connected to client database on MongoDB Atlas server.");
 }).catch(err => {
     console.log('ERROR:', err.message);
 }); // mongodb connection
@@ -32,10 +32,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(cookieParser('secret'));
 app.use(flash());
+app.use(function(req, res, next) {
+    res.locals.currentUser = req.user;
+    next();
+});
 
 // ROUTES
 app.use('/', require('./routes/index'));
 app.use('/clients', require('./routes/clients'));
 
 // SERVER RESPONSE
-app.listen(PORT, () => { console.log('FuelQuote server listening on port', PORT) });
+app.listen(PORT, () => { console.log('FuelQuote server listening on port ' + PORT + '.') });
