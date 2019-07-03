@@ -2,16 +2,20 @@
 <html>
     <head>
         <title>Fuel Quotes</title>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.js"></script>
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
         <link rel="stylesheet" type="text/css" href="/stylesheets/app.css">
     </head>
 
     <body>
         <div class="ui fixed inverted menu">
             <div class="ui container">
-                <div class="header item"><i class="quote left icon"></i>FuelQuote</div>
+                <div class="header item"><i class="quote left icon"></i> FuelQuote <i class="quote right icon"></i></div>
                 <%if(currentUser && currentUser.newAcc === false) {%>
-                <a class="item">Get A Quote</a>
                     <div class="right menu">
                         <a class="item"><i class="user circle icon"></i><%=currentUser.username%></a>
                         <a href="/clients/logout" class="item">Logout</a>
@@ -19,3 +23,4 @@
                 <%}%>
             </div>
         </div>
+    

@@ -2,16 +2,18 @@
 
 <div class="ui main text container segment" id="container">
     <div class="ui huge header" style="text-align: center;">REGISTER</div>
-    <%if(locals.message) {%>
-        <%if(message.success) {%>
-            <div class="alert alert-success" role="alert">
-                <span><i class="check icon"></i><%=message.success%></span>
-            </div>
-        <%} else {%>
-            <div class="alert alert-error" role="alert">
-                <span><i class="exclamation icon"></i><%=message.error%></span>
-            </div>
-        <%}%>
+    <%if(message.type === 'error') {%>
+        <div class="ui negative message">
+            <i class="close icon"></i>
+            <div class="header"><i class="exclamation icon"></i><%=messageHeader%></div>
+            <div class="body"><%=messageBody%></div>
+        </div>
+    <%} else if(message.type === 'success') {%>
+        <div class="ui success message">
+            <i class="close icon"></i>
+            <div class="header"><i class="check icon"></i><%=messageHeader%></div>
+            <div class="body"><%=messageBody%></div>
+        </div>
     <%}%>
     <form class="ui form" action="/register" method="POST">
         <%# Username %>

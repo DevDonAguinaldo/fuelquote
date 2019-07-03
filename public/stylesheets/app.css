@@ -1,23 +1,10 @@
-#container, #flash-messages { margin-top: 50px; }
+#container { margin-top: 10em; }
 
-.btns { text-align: center; }
+#welcome { margin-top: 3em; }
 
-.alert-error,
-#profileManagement {
-    color: red;
-    background-color: #ffc9c9;
-    padding: 5px;
-    margin-bottom: 1em;
-    border-radius: 5px;
-}
+#mymodal { padding: 3em; }
 
-.alert-success {
-    color: green;
-    background-color: lightgreen;
-    padding: 5px;
-    margin-bottom: 1em;
-    border-radius: 5px;
-} 
+.btns, #welcome { text-align: center; }
 
 .firstname, .lastname {
     width: 50%;

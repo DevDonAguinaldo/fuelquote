@@ -1,14 +1,7 @@
 <% include partials/header %>
 
 <div class="ui main text container segment" id="container">
-    <div class="ui huge header" style="text-align: center;">PROFILE MANAGEMENT</div>
-    <%if(locals.message) {%>
-        <%if(message.error) {%>
-            <div class="alert alert-error" role="alert">
-                <span><i class="exclamation icon"></i><%=message.error%></span>
-            </div>
-        <%}%>
-    <%}%>
+    <div class="ui huge header" style="text-align: center;">COMPLETE REGISTRATION</div>
     <form class="ui form" action="/clients/manage" method="POST">
         <%# Username %>
         <div class="field">
@@ -17,19 +10,19 @@
         <%# First Name And Last Name %>
         <div class="two fields">
             <div class="field">
-                <input type="text" name="registerfirstname" placeholder="First Name" required>
+                <input type="text" name="registerfirstname" placeholder="First Name" maxlength="25" required>
             </div>
             <div class="field">
-                <input type="text" name="registerlastname" placeholder="Last Name" required>
+                <input type="text" name="registerlastname" placeholder="Last Name" maxlength="25" required>
             </div>
         </div>
         <%# Home Address %>
         <div class="fields">
             <div class="eight wide field">
-                <input type="text" name="registerhomeaddress" placeholder="Address 1" required>
+                <input type="text" name="registerhomeaddress" placeholder="Address 1" maxlength="100" required>
             </div>
             <div class="four wide field">
-                <input type="text" name="registercity" placeholder="City" required>
+                <input type="text" name="registercity" placeholder="City" maxlength="100" required>
             </div>
             <div class="two wide field">
                 <select class="ui search dropdown" name="registerstate" required>
@@ -88,7 +81,7 @@
                 </select>
             </div>
             <div class="four wide field">
-                <input type="text" name="registerzip" placeholder="Zip" required>
+                <input type="text" name="registerzip" placeholder="Zip" minlength="5" maxlength="9" required>
             </div>
         </div>
         <%# Second Optional Address %>

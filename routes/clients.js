@@ -6,19 +6,13 @@ const mongoose = require('mongoose'),
 // HOME PAGE - REQUIRES LOGIN
 router.get("/home", (req, res) => {
     if (req.user.newAcc === true) {
-        req.flash('manageProfile', 'You need to complete your registration.');
-        res.locals.message = req.flash();
         res.render('manage', { client: req.user });
     } else {
-        req.flash('success', 'You have successfully logged in!');
-        res.locals.message = req.flash(); 
         res.render('home', { client: req.user });
     }
 });
 
-router.get("/manage", (req, res) => {
-    res.render('manage');
-})
+router.get("/manage", (req, res) => { res.render('manage'); })
 
 router.post("/manage", (req, res) => {
     let clientData = {
@@ -33,14 +27,18 @@ router.post("/manage", (req, res) => {
     Client.findByIdAndUpdate(req.user._id, clientData, (err, client) => {
         if (err) {
             console.log(err);
-            req.flash('error', 'The information you entered was invalid!');
-            res.locals.message = req.flash();
             res.render('manage', { client: req.user });
         } else {
             console.log("updated database");
-            res.render('login');
+            message = { type: 'null' };
+            res.render('login', message);
         }
     });
+});
+
+// GET A QUOTE
+router.get("/getaquote", (req, res) => {
+    res.render('getaquote', { client: req.user });
 });
 
 // LOGOUT 

@@ -4,10 +4,11 @@ const express               = require('express'),
       mongoose              = require('mongoose'),
       passport              = require('passport'),
       passportLocalMongoose = require('passport-local-mongoose'),
-      flash                 = require('connect-flash'),
       cookieParser          = require('cookie-parser'),
       URL                   = process.env.MONGODB_URI || "mongodb://localhost/clientinfo",
       PORT                  = process.env.PORT || 3030;
+
+var messages = [];
 
 // MIDDLEWARE
 mongoose.connect(URL, {
@@ -31,7 +32,6 @@ app.use(require("express-session")({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cookieParser('secret'));
-app.use(flash());
 app.use(function(req, res, next) {
     res.locals.currentUser = req.user;
     next();
