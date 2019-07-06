@@ -1,7 +1,9 @@
-const mongoose = require('mongoose'),
-      express  = require('express'),
-      router   = express.Router(),
-      Client   = require('../models/client');
+const LocalStrategy = require('passport-local').Strategy,
+      passport      = require('passport'),mongoose = require('mongoose'),
+      express       = require('express'),
+      router        = express.Router(),
+      Client        = require('../models/client'),
+      Quote         = require('../models/quote');
 
 // HOME PAGE - REQUIRES LOGIN
 router.get("/home", (req, res) => {
@@ -37,8 +39,52 @@ router.post("/manage", (req, res) => {
 });
 
 // GET A QUOTE
-router.get("/getaquote", (req, res) => {
+router.get("/home/getaquote", (req, res) => {
     res.render('getaquote', { client: req.user });
+});
+
+router.post("/home/getaquote", (req, res) => {
+    Client.findById(req.user._id, (err, client) => {
+        if(err) {
+            console.log(err);
+            var message_error = {
+                type: 'error',
+                messageHeader: 'An error has occurred!',
+                messageBody: err + '.'
+            };
+            res.render('getaquote', {
+                client: req.user,
+                message: message_error
+            });
+        } else {
+            Quote.create(req.body.quote, (err, quote) => {
+                if(err) {
+                    console.log(err);
+                    res.redirect('/clients/home/getaquote');
+                } else {
+                    client.quoteHistory.push(quote);
+                    client.save();
+                    quote.save();
+                    res.render('home', { client: client });
+                }
+            });
+        }
+    });
+});
+
+router.get('/home/quotehistory', (req, res) => {
+    Client.findById(req.user._id).populate('quoteHistory').exec((err, client) => {
+        if(err) {
+            console.log(err);
+        } else {
+            console.log('Successfully queried database for quote history.');
+            console.log(client.quoteHistory);
+            res.render('quotehistory', {
+                client: client,
+                quotes: client.quoteHistory
+            });
+        }
+    });
 });
 
 // LOGOUT 

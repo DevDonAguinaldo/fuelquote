@@ -1,0 +1,32 @@
+<% include partials/header %>
+    <div class="ui main text container segment" id="qhcontainer">
+        <h1><%=client.username%>'s Quote History</h1>
+        <div class="ui segments">
+            <%quotes.forEach(quote => {%>
+                <div class="ui inverted black segment">
+                    <span><strong>Date Ordered</strong>: <%=quote.dateOrdered%></span>
+                </div>
+                <div class="ui segment">
+                    <label for="delDate"><strong>Delivery Date: </strong></label>
+                    <span name="delDate"><%=quote.deliveryDate%></span>
+                </div>
+                <div class="ui segment">
+                    <label for="quoteAdd"><strong>Delivery Address: </strong></label>
+                    <span name="quoteAdd"><%=quote.address%></span>
+                </div>
+                <div class="ui segment">
+                    <label for="quoteGal"><strong>Gallons: </strong></label>
+                    <span name="quoteGal"><%=quote.gallons%></span>
+                </div>
+                <div class="ui segment">
+                    <label for="suggPrice"><strong>Suggested Price: </strong></label>
+                    <span name="suggPrice"><%=quote.suggestedPrice%></span>
+                </div>
+                <div class="ui segment">
+                    <label for="quoteTotal"><strong>Total Amount: </strong></label>
+                    <span name="quoteTotal"><%=quote.total%></span>
+                </div>
+            <%});%>
+        </div>
+    </div>
+<% include partials/footer %>

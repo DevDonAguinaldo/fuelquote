@@ -2,9 +2,12 @@
 const express               = require('express'),
       bodyParser            = require('body-parser'),
       mongoose              = require('mongoose'),
+      LocalStrategy         = require('passport-local').Strategy,
       passport              = require('passport'),
       passportLocalMongoose = require('passport-local-mongoose'),
       cookieParser          = require('cookie-parser'),
+      Client                = require('./models/client'),
+      Quote                 = require('./models/quote');
       URL                   = process.env.MONGODB_URI || "mongodb://localhost/clientinfo",
       PORT                  = process.env.PORT || 3030;
 
@@ -36,6 +39,14 @@ app.use(function(req, res, next) {
     res.locals.currentUser = req.user;
     next();
 });
+
+passport.use(new LocalStrategy(Client.authenticate()));
+passport.serializeUser(Client.serializeUser());
+passport.deserializeUser(Client.deserializeUser());      
+
+passport.use(new LocalStrategy(Quote.authenticate()));
+passport.serializeUser(Quote.serializeUser());
+passport.deserializeUser(Quote.deserializeUser());      
 
 // ROUTES
 app.use('/', require('./routes/index'));

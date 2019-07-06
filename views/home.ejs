@@ -4,7 +4,8 @@
 
 <div class="ui container segment">
     <div class="ui first huge header" style="text-align: center;">My Dashboard</div>
-    <a class="ui inverted orange button" id="gaq">Get A Quote</a>
+    <a href="/clients/home/getaquote" class="ui inverted orange button" id="gaq">Get A Quote</a>
+    <a href="/clients/home/quotehistory" class="ui inverted yellow button" id="gqh">Get Quote History</a>
     <div>
         <div class="ui horizontal segments">
             <div class="ui segment">
@@ -21,53 +22,15 @@
         <div class="ui segments">
             <%if(client.quoteHistory === undefined || client.quoteHistory == 0) {%>
                 <div class="ui segment">
-                    <em>There is currently no quote history.</em>
+                  <em>There is currently no quote history.</em>
+                </div>
+            <%} else {%>
+                <div class="ui segment">
+                  <strong><%=client.name%></strong>
                 </div>
             <%}%>
         </div>
     </div>
-</div>
-
-<%# FUEL PRICE MODAL %>
-<div class="ui modal" id="mymodal">
-  <div class="ui huge header" style="text-align: center;">My Quote</div>
-  <i class="close icon"></i>
-    <form class="ui form" action="/clients/manage" method="POST">
-      <%# QUANTITY OF FUEL IN GALLONS %>
-      <div class="field">
-          <label for="quote[gallons]">Quantity (Gallons)</label>
-          <input type="number" name="quote[gallons]" placeholder="0" required>
-      </div>
-      <%# ADDRESS - PROFILE %>
-      <div class="field">
-          <label for="quote[address]">Delivery Address</label>
-          <input type="text" name="quote[address]" value="<%=client.address%>" readonly>
-      </div>
-      <%# DELIVERY DATE + DATE PICKER API %>
-      <div class="fields">
-            <div class="eight wide field">
-                <label for="quote[deliverydate]">Order Date</label>
-                <input type="text" name="quote[orderdate]" id="orderdate" readonly>                
-            </div>
-            <div class="eight wide field">
-                <label for="quote[deliverydate]">Delivery Date</label>
-                <input type="text" name="quote[deliverydate]" id="datepicker" required>                
-            </div>
-        </div>
-      <%# PRICING %>
-      <div class="fields">
-          <div class="eight wide field">
-              <label for="quote[suggested]">Suggested Price Per Gallon</label>
-              <input type="text" name="quote[suggested]" id="suggprice" placeholder="0" readonly></p>
-          </div> 
-          <div class="eight wide field">
-              <label for="quote[total]">Total Amount</label>
-              <input type="text" name="quote[total]" id="totalprice" placeholder="0" readonly>
-          </div>
-      </div>
-      <%# BUTTONS %>
-      <button type="submit" class="ui green inverted button">Submit</button>
-    </form>
 </div>
 
 <% include partials/footer %>

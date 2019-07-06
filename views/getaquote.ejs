@@ -1,0 +1,44 @@
+<% include partials/header %>
+    <%# FUEL PRICE MODAL %>
+<div class="ui main text container segment" id="container">
+  <div class="ui huge header" style="text-align: center;">My Quote</div>
+    <form class="ui form" action="/clients/home/getaquote" method="POST" autocomplete="off">
+      <%# QUANTITY OF FUEL IN GALLONS %>
+      <div class="field">
+          <label for="quote[gallons]">Quantity In Gallons</label>
+          <input type="number" name="quote[gallons]" placeholder="0" required>
+      </div>
+      <%# ADDRESS - PROFILE %>
+      <div class="field">
+          <label for="quote[address]">Delivery Address</label>
+          <input type="text" name="quote[address]" value="<%=client.address%>" readonly>
+      </div>
+      <%# DELIVERY DATE + DATE PICKER API %>
+      <div class="fields">
+            <div class="eight wide field">
+                <label for="quote[orderdate]">Order Date</label>
+                <input type="text" name="quote[orderdate]" id="orderdate" readonly>                
+            </div>
+            <div class="eight wide field">
+                <label for="quote[deliverydate]">Delivery Date</label>
+                <input type="text" name="quote[deliverydate]" id="datepicker" required>                
+            </div>
+        </div>
+      <%# PRICING %>
+      <div class="fields">
+          <div class="eight wide field">
+              <label for="quote[suggested]">Suggested Price Per Gallon</label>
+              <input type="text" name="quote[suggested]" id="suggprice" placeholder="0" readonly required></p>
+          </div> 
+          <div class="eight wide field">
+              <label for="quote[total]">Total Amount</label>
+              <input type="text" name="quote[total]" id="totalprice" placeholder="0" readonly required>
+          </div>
+      </div>
+      <%# BUTTONS %>
+      <button type="submit" class="ui green inverted button">Submit</button>
+      <button class="ui blue inverted button">Calculate</button>
+      <a href="/clients/home" class="ui red inverted button">Cancel</a>
+    </form>
+</div>
+<% include partials/footer %>

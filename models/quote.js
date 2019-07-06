@@ -4,12 +4,22 @@ const passportLocalMongoose = require('passport-local-mongoose'),
 
 // SCHEMA
 const QuoteSchema = new mongoose.Schema({
-    dateCreated: {
+    gallons: Number,
+    address: String,
+    dateOrdered: {
         type: String,
         default: Date()
     },
-    quotePrice: {
-        type: Number.toFixed(2),
+    deliveryDate: {
+        type: String,
+        default: 'N/A'
+    },
+    suggestedPrice: {
+        type: Number,
+        default: 0.0
+    },
+    total: {
+        type: Number,
         default: 0.0
     }
 });

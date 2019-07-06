@@ -34,7 +34,7 @@ router.post("/register", (req, res) => {
     let newClient = new Client({ 
         newAcc: true,
         username: req.body.registerusername,
-        datecreate: Date()
+        dateCreated: Date()
     });
     
     if (req.body.registerpassword === req.body.confirmpassword) {

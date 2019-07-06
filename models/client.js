@@ -1,6 +1,7 @@
 // DEPENDENCIES
 const passportLocalMongoose = require('passport-local-mongoose'),
-      mongoose              = require('mongoose');
+      mongoose              = require('mongoose'),
+      Quote                 = require('../models/quote');
 
 // SCHEMA
 const ClientSchema = new mongoose.Schema({
@@ -21,7 +22,10 @@ const ClientSchema = new mongoose.Schema({
         type: String,
         default: "N/A",
     },
-    quoteHistory: []
+    quoteHistory: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Quote"
+    }]
 });
 
 ClientSchema.plugin(passportLocalMongoose); // allows passport to recognize schema to pass to db
