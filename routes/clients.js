@@ -10,7 +10,17 @@ router.get("/home", (req, res) => {
     if (req.user.newAcc === true) {
         res.render('manage', { client: req.user });
     } else {
-        res.render('home', { client: req.user });
+        Client.findById(req.user._id).populate('quoteHistory').exec((err, client) => {
+            if(err) {
+                console.log(err);
+                res.redirect('/clients/home');
+            } else {
+                res.render('home', {
+                    client: client,
+                    quotes: client.quoteHistory
+                });
+            }
+        });
     }
 });
 
@@ -31,11 +41,13 @@ router.post("/manage", (req, res) => {
             console.log(err);
             res.render('manage', { client: req.user });
         } else {
-            console.log("updated database");
-            message = { type: 'null' };
-            res.render('login', message);
+            console.log("Updated " + client.username + "'s info in database.");
+            client.save();
         }
     });
+    req.user = clientData;
+
+    res.render('home', { client: req.user });
 });
 
 // GET A QUOTE
@@ -76,9 +88,9 @@ router.get('/home/quotehistory', (req, res) => {
     Client.findById(req.user._id).populate('quoteHistory').exec((err, client) => {
         if(err) {
             console.log(err);
+            res.redirect('/clients/home');
         } else {
             console.log('Successfully queried database for quote history.');
-            console.log(client.quoteHistory);
             res.render('quotehistory', {
                 client: client,
                 quotes: client.quoteHistory

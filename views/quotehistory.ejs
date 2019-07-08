@@ -4,27 +4,28 @@
         <div class="ui segments">
             <%quotes.forEach(quote => {%>
                 <div class="ui inverted black segment">
-                    <span><strong>Date Ordered</strong>: <%=quote.dateOrdered%></span>
+                    <strong>Date Ordered</strong>
+                    <span class="quoteInfo"><%=quote.orderdate%></span>
                 </div>
                 <div class="ui segment">
-                    <label for="delDate"><strong>Delivery Date: </strong></label>
-                    <span name="delDate"><%=quote.deliveryDate%></span>
+                    <label for="delDate"><strong>Delivery Date </strong></label>
+                    <span name="delDate" class="quoteInfo"><%=quote.deliverydate%></span>
                 </div>
                 <div class="ui segment">
-                    <label for="quoteAdd"><strong>Delivery Address: </strong></label>
-                    <span name="quoteAdd"><%=quote.address%></span>
+                    <label for="quoteAdd"><strong>Delivery Address </strong></label>
+                    <span name="quoteAdd" class="quoteInfo"><%=quote.address%></span>
                 </div>
                 <div class="ui segment">
-                    <label for="quoteGal"><strong>Gallons: </strong></label>
-                    <span name="quoteGal"><%=quote.gallons%></span>
+                    <label for="quoteGal"><strong>Gallons </strong></label>
+                    <span name="quoteGal" class="quoteInfo"><%=quote.gallons%></span>
                 </div>
                 <div class="ui segment">
-                    <label for="suggPrice"><strong>Suggested Price: </strong></label>
-                    <span name="suggPrice"><%=quote.suggestedPrice%></span>
+                    <label for="suggPrice"><strong>Suggested Price </strong></label>
+                    <span name="suggPrice" class="quoteInfo"><%=quote.suggestedPrice%></span>
                 </div>
                 <div class="ui segment">
-                    <label for="quoteTotal"><strong>Total Amount: </strong></label>
-                    <span name="quoteTotal"><%=quote.total%></span>
+                    <label for="quoteTotal"><strong>Total Amount </strong></label>
+                    <span name="quoteTotal" class="quoteInfo"><%=quote.total%></span>
                 </div>
             <%});%>
         </div>

@@ -5,7 +5,7 @@
 <div class="ui container segment">
     <div class="ui first huge header" style="text-align: center;">My Dashboard</div>
     <a href="/clients/home/getaquote" class="ui inverted orange button" id="gaq">Get A Quote</a>
-    <a href="/clients/home/quotehistory" class="ui inverted yellow button" id="gqh">Get Quote History</a>
+    <!-- <a href="/clients/home/quotehistory" class="ui inverted yellow button" id="gqh">Get Quote History</a> -->
     <div>
         <div class="ui horizontal segments">
             <div class="ui segment">
@@ -18,17 +18,22 @@
                 <strong>Username: </strong><%=client.username%>
             </div>
         </div>
-        <h2>Quote History</h2>
-        <div class="ui segments">
-            <%if(client.quoteHistory === undefined || client.quoteHistory == 0) {%>
-                <div class="ui segment">
-                  <em>There is currently no quote history.</em>
-                </div>
-            <%} else {%>
-                <div class="ui segment">
-                  <strong><%=client.name%></strong>
-                </div>
-            <%}%>
+        <div class="ui horizontal segments">
+            <div class="ui vertical segments">
+                <a href="/clients/home/quotehistory" id="qhlink">Quote History</a>
+                <%if(client.quoteHistory === undefined || client.quoteHistory == 0) {%>
+                    <div class="ui segment">
+                    <em>There is currently no quote history.</em>
+                    </div>
+                <%} else {%>
+                    <%client.quoteHistory.forEach(quote => {%>
+                        <div class="ui segment">
+                            <strong>Order Number</strong>
+                            <span class="quoteInfo">#<%=quote._id%></span>
+                        </div>
+                    <%});%>
+                <%}%>
+            </div>
         </div>
     </div>
 </div>

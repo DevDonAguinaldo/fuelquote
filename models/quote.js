@@ -6,11 +6,11 @@ const passportLocalMongoose = require('passport-local-mongoose'),
 const QuoteSchema = new mongoose.Schema({
     gallons: Number,
     address: String,
-    dateOrdered: {
+    orderdate: {
         type: String,
         default: Date()
     },
-    deliveryDate: {
+    deliverydate: {
         type: String,
         default: 'N/A'
     },

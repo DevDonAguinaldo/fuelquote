@@ -12,3 +12,9 @@
     width: 50%;
     float: left;
 }
+
+.quoteInfo { float: right; }
+
+#qhlink { 
+    font-size: 20px; 
+}
