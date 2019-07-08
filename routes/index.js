@@ -60,9 +60,9 @@ router.post("/register", (req, res) => {
                 }
             });
             message = {
-                type: 'success',
+                type: 'warning',
                 messageHeader: 'You have successfully registered!',
-                messageBody: 'Log in to complete your registration.'
+                messageBody: 'You need to log in to complete your registration.'
             } 
             res.render('login', message);
         });

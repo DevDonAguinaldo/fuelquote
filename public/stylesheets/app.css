@@ -16,5 +16,6 @@
 .quoteInfo { float: right; }
 
 #qhlink { 
-    font-size: 20px; 
+    font-size: 20px;
+    padding-left: 10px;
 }

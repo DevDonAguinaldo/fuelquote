@@ -23,12 +23,12 @@
                 <a href="/clients/home/quotehistory" id="qhlink">Quote History</a>
                 <%if(client.quoteHistory === undefined || client.quoteHistory == 0) {%>
                     <div class="ui segment">
-                    <em>There is currently no quote history.</em>
+                        <em>There is currently no quote history.</em>  
                     </div>
                 <%} else {%>
                     <%client.quoteHistory.forEach(quote => {%>
                         <div class="ui segment">
-                            <strong>Order Number</strong>
+                            <strong>Order No. </strong>
                             <span class="quoteInfo">#<%=quote._id%></span>
                         </div>
                     <%});%>

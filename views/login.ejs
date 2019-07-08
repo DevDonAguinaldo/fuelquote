@@ -14,6 +14,12 @@
             <div class="header"><i class="check icon"></i><%=messageHeader%></div>
             <div class="body"><%=messageBody%></div>
         </div>
+    <%} else if(message.type === 'warning') {%>
+        <div class="ui warning message">
+            <i class="close icon"></i>
+            <div class="header"><i class="exclamation icon"></i><%=messageHeader%></div>
+            <div class="body"><%=messageBody%></div>
+        </div>
     <%}%>
     <form class="ui form" action="/login" method="POST">
         <div class="field">
