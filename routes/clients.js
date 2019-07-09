@@ -1,8 +1,7 @@
 const LocalStrategy = require('passport-local').Strategy,
       passport      = require('passport'),mongoose = require('mongoose'),
       express       = require('express'),
-      price         = require('../price.js'),
-      tools         = require('../tools.js'),
+      price         = require('../js/price.js'),
       Client        = require('../models/client'),
       Quote         = require('../models/quote'),
       router        = express.Router();
@@ -26,16 +25,30 @@ router.get("/home", (req, res) => {
     }
 });
 
+// MANAGE 
 router.get("/manage", (req, res) => { res.render('manage'); })
 
 router.post("/manage", (req, res) => {
     let clientData = {
         'newAcc': false,
         'username': req.user.username,
-        'name': `${req.body.registerfirstname} ${req.body.registerlastname}`,
+        'name': {
+            'firstName': req.body.registerfirstname,
+            'lastName': req.body.registerlastname
+        },
         'email': req.body.registeremail,
-        'address': `${req.body.registerhomeaddress}, ${req.body.registercity}, ${req.body.registerstate}, ${req.body.registerzip}`,
-        'address2': `${req.body.registerhomeaddress2}, ${req.body.registercity2}, ${req.body.registerstate2}, ${req.body.registerzip2}`, 
+        'address': {
+            'street': req.body.registerhomeaddress, 
+            'city': req.body.registercity, 
+            'state': req.body.registerstate, 
+            'zipcode': req.body.registerzip,
+        },
+        'address2': {
+            'street': req.body.registerhomeaddress2, 
+            'city': req.body.registercity2, 
+            'state': req.body.registerstate2, 
+            'zipcode': req.body.registerzip2,
+        }
     };
     Client.findByIdAndUpdate(req.user._id, clientData, (err, client) => {
         if (err) {
@@ -63,7 +76,7 @@ router.post("/home/getaquote", (req, res) => {
     Client.findById(req.user._id, (err, client) => {
         if(err) {
             console.log(err);
-            var message_error = {
+            message_error = {
                 type: 'error',
                 messageHeader: 'An error has occurred!',
                 messageBody: err + '.'
@@ -73,22 +86,13 @@ router.post("/home/getaquote", (req, res) => {
                 message: message_error
             });
         } else {
-
-            // IF CALCULATED
-            // Quote.create(req.body.quote, (err, quote) => {
-            //     if(err) {
-            //         console.log(err);
-            //         res.redirect('/clients/home/getaquote');
-            //     } else {
-            //         client.quoteHistory.push(quote);
-            //         client.save();
-            //         quote.save();
-            //         res.render('home', { client: client });
-            //     }
-            // });
+            
+            res.redirect('/clients/home');
         }
     });
 });
+
+// SHOW
 
 // QUOTE HISTORY DETAILS
 router.get('/home/quotehistory', (req, res) => {

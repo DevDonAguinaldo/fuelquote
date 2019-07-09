@@ -5,8 +5,10 @@ module.exports = {
     hasHistory: function(quoteHistory) {
         return quoteHistory === undefined ? true : false;
     },
-    inSummmer: function(month) {
-        if(month === 'May' || month === 'June' || month === 'July' || month === 'August') return true;
-        else return false;
+    inSummer: function(month) {
+        if(month === 5 || month === 6 || month === 7 || month === 8) 
+            return true;
+        else 
+            return false;
     }
 };

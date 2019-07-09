@@ -9,7 +9,10 @@ const ClientSchema = new mongoose.Schema({
         type: Boolean,
         default: true
     },
-    name: String,
+    name: {
+        firstName: String,
+        lastName: String,
+    },
     username: String,
     dateCreated: { 
         type: String,
@@ -17,10 +20,17 @@ const ClientSchema = new mongoose.Schema({
     },
     password: String,
     email: String,
-    address: String,
+    address: {
+        street: String,
+        city: String,
+        state: String,
+        zipcode: Number
+    },
     address2: {
-        type: String,
-        default: "N/A",
+        street: String,
+        city: String,
+        state: String,
+        zipcode: Number
     },
     quoteHistory: [{
         type: mongoose.Schema.Types.ObjectId,

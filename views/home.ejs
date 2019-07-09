@@ -1,6 +1,6 @@
 <% include partials/header %>
 
-<h1 id="welcome">Welcome, <%=client.name%>!</h1>
+<h1 id="welcome">Welcome, <%=client.name.firstName%> <%=client.name.lastName%>!</h1>
 
 <div class="ui container segment">
     <div class="ui first huge header" style="text-align: center;">My Dashboard</div>
@@ -9,7 +9,7 @@
     <div>
         <div class="ui horizontal segments">
             <div class="ui segment">
-                <strong>Name: </strong><%=client.name%>
+                <strong>Name: </strong><%=client.name.firstName%> <%=client.name.lastName%>
             </div>
             <div class="ui segment">
                 <strong>Email: </strong><%=client.email%>

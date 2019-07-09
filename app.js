@@ -8,8 +8,6 @@ const express               = require('express'),
       cookieParser          = require('cookie-parser'),
       Client                = require('./models/client'),
       Quote                 = require('./models/quote'),
-      tools                 = require('./tools.js'),
-      price                 = require('./price.js');
       URL                   = process.env.MONGODB_URI || "mongodb://localhost/clientinfo",
       PORT                  = process.env.PORT || 3030;
 
