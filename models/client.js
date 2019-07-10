@@ -1,7 +1,6 @@
 // DEPENDENCIES
 const passportLocalMongoose = require('passport-local-mongoose'),
-      mongoose              = require('mongoose'),
-      Quote                 = require('../models/quote');
+      mongoose              = require('mongoose');
 
 // SCHEMA
 const ClientSchema = new mongoose.Schema({

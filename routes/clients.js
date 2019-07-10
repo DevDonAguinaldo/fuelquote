@@ -73,26 +73,58 @@ router.get("/home/getaquote", (req, res) => {
 });
 
 router.post("/home/getaquote", (req, res) => {
-    Client.findById(req.user._id, (err, client) => {
-        if(err) {
-            console.log(err);
-            message_error = {
-                type: 'error',
-                messageHeader: 'An error has occurred!',
-                messageBody: err + '.'
-            };
-            res.render('getaquote', {
-                client: req.user,
-                message: message_error
-            });
-        } else {
-            
-            res.redirect('/clients/home');
-        }
+    let month = Number((req.body.quote.orderdate).substr(0, 2));
+    let suggested = price.getSuggestedPrice(req.user.address.state, month, req.user.quoteHistory, req.body.quote.gallons);
+    let total = price.getTotal(req.body.quote.gallons, suggested);
+
+    let newQuote = new Quote({
+        gallons: req.body.quote.gallons,
+        address: {
+            street: req.user.address.street,
+            city: req.user.address.city,
+            state: req.user.address.state,
+            zipcode: req.user.address.zipcode     
+        },
+        orderdate: req.body.quote.orderdate,
+        deliverydate: req.body.quote.deliverydate,
+        suggestedPrice: suggested,
+        total: total,
+    });
+    
+    res.render('quotedetails', { 
+        client: req.user, 
+        quote: newQuote
     });
 });
 
-// SHOW
+// SHOW QUOTE DETAILS
+router.get('/home/quotedetails', (req, res) => {
+    res.render('quotedetails', { 
+        client: req.user,
+        quote: []
+     });
+});
+
+router.post('/home/quotedetails', (req, res) => {
+    Client.findById(req.user._id, (err, client) => {
+        if (err) {
+            console.log(err);
+            res.redirect('/clients/home/quotedetails');
+        } else {
+            Quote.create(req.body.quote, (err, quote) => {
+                if(err) {
+                    console.log(err);
+                    res.redirect('/clients/home/quotedetails');
+                } else {
+                    client.quoteHistory.push(quote);
+                    client.save();
+                    quote.save();
+                    res.render('home', { client: client });
+                }
+            });
+        }
+    });
+});
 
 // QUOTE HISTORY DETAILS
 router.get('/home/quotehistory', (req, res) => {

@@ -8,6 +8,7 @@
 
             function addZero(date) {
                 if(date < 10) return '0' + date;
+                else return date;
             }
 
             document.getElementById('orderdate').value = `${addZero(month)}/${addZero(day)}/${year}`;

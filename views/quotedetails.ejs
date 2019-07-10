@@ -1,12 +1,12 @@
 <% include partials/header %>
-<%# FUEL QUOTE MODULE %>
+<%# SHOW QUOTE DETAILS %>
 <div class="ui main text container segment" id="container">
-    <div class="ui huge header" style="text-align: center;">Get A Quote</div>
-    <form class="ui form" action="/clients/home/getaquote" method="POST" autocomplete="off">
+    <div class="ui huge header" style="text-align: center;">Quote Details</div>
+    <form class="ui form" action="/clients/home/quotedetails" method="POST" autocomplete="off">
         <%# QUANTITY OF FUEL IN GALLONS %>
         <div class="field">
             <label for="quote[gallons]">Quantity In Gallons</label>
-            <input type="number" name="quote[gallons]" placeholder="0" id="gallons" required>
+            <input type="number" name="quote[gallons]" placeholder="0" id="gallons" value="<%=quote.gallons%>" readonly required>
         </div>
         <%# ADDRESS - PROFILE %>
         <div class="field">
@@ -17,27 +17,27 @@
         <div class="fields">
             <div class="eight wide field">
                 <label for="quote[orderdate]">Order Date</label>
-                <input type="text" name="quote[orderdate]" id="orderdate" readonly>                
+                <input type="text" name="quote[orderdate]" id="orderdate" value="<%=quote.orderdate%>" readonly required>                
             </div>
             <div class="eight wide field">
                 <label for="quote[deliverydate]">Delivery Date</label>
-                <input type="text" name="quote[deliverydate]" id="datepicker" required>                
+                <input type="text" name="quote[deliverydate]" value="<%=quote.deliverydate%>" readonly required>                
             </div>
         </div>
         <%# PRICING %>
         <div class="fields">
             <div class="eight wide field">
                 <label for="quote[suggested]">Suggested Price Per Gallon</label>
-                <input type="text" name="quote[suggested]" id="suggprice" placeholder="0" readonly required>
+                <input type="text" name="quote[suggested]" id="suggprice" value="<%=quote.suggestedPrice%>" readonly required>
             </div> 
             <div class="eight wide field">
                 <label for="quote[total]">Total Amount</label>
-                <input type="text" name="quote[total]" id="totalprice" placeholder="0" readonly required>
+                <input type="text" name="quote[total]" id="totalprice" value="<%=quote.total%>" readonly required>
             </div>
         </div>
         <%# BUTTONS %>
-        <button type="submit" class="ui blue inverted button" id="calculatePrice">Calculate</button>
-        <a href="/clients/home" class="ui red inverted button">Cancel</a>
+        <button type="submit" class="ui green inverted button">Save</button>
+        <a href="/clients/home/getaquote" class="ui yellow inverted button">Edit</a>
     </form>
 </div>
 
