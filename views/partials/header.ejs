@@ -12,15 +12,14 @@
     </head>
 
     <body>
-        <div class="ui fixed inverted menu">
-            <div class="ui container">
-                <a href="/clients/home" class="header item"><i class="quote left icon"></i> FuelQuote <i class="quote right icon"></i></a>
-                <%if(currentUser && currentUser.newAcc === false) {%>
-                    <div class="right menu">
-                        <a class="item"><i class="user circle icon"></i><%=currentUser.username%></a>
-                        <a href="/clients/logout" class="item">Logout</a>
-                    </div>
-                <%}%>
+        <%if(currentUser && currentUser.newAcc === false) {%>
+            <div class="ui fixed inverted menu">
+                <div class="ui container">
+                    <a href="/clients/home" class="header item"><i class="quote left icon"></i> FuelQuote <i class="quote right icon"></i></a>
+                        <div class="right menu">
+                            <a class="item"><i class="user circle icon"></i><%=currentUser.username%></a>
+                            <a href="/clients/logout" class="item">Logout</a>
+                        </div>
+                </div>
             </div>
-        </div>
-    
+        <%}%>

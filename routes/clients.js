@@ -73,11 +73,12 @@ router.get("/home/getaquote", (req, res) => {
 });
 
 router.post("/home/getaquote", (req, res) => {
+    let newQuote;
     let month = Number((req.body.quote.orderdate).substr(0, 2));
     let suggested = price.getSuggestedPrice(req.user.address.state, month, req.user.quoteHistory, req.body.quote.gallons);
     let total = price.getTotal(req.body.quote.gallons, suggested);
 
-    let newQuote = new Quote({
+    newQuote = new Quote({
         gallons: req.body.quote.gallons,
         address: {
             street: req.user.address.street,
@@ -107,9 +108,8 @@ router.get('/home/quotedetails', (req, res) => {
 
 router.post('/home/quotedetails', (req, res) => {
     Client.findById(req.user._id, (err, client) => {
-        if (err) {
+        if(err) {
             console.log(err);
-            res.redirect('/clients/home/quotedetails');
         } else {
             Quote.create(req.body.quote, (err, quote) => {
                 if(err) {
@@ -117,9 +117,12 @@ router.post('/home/quotedetails', (req, res) => {
                     res.redirect('/clients/home/quotedetails');
                 } else {
                     client.quoteHistory.push(quote);
-                    client.save();
                     quote.save();
-                    res.render('home', { client: client });
+                    client.save();
+                    res.render('home', {
+                        client: client,
+                        quote: quote
+                    });
                 }
             });
         }
@@ -141,8 +144,6 @@ router.get('/home/quotehistory', (req, res) => {
         }
     });
 });
-
-// PRICING MODULE
 
 // LOGOUT 
 router.get("/logout", (req, res) => {

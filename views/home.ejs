@@ -18,22 +18,28 @@
                 <strong>Username: </strong><%=client.username%>
             </div>
         </div>
+        <a href="/clients/home/quotehistory" class="ui blue inverted button" id="qhlink">Quote History</a>
         <div class="ui horizontal segments">
             <div class="ui vertical segments">
-                <a href="/clients/home/quotehistory" id="qhlink">Quote History</a>
                 <%if(client.quoteHistory === undefined || client.quoteHistory == 0) {%>
                     <div class="ui segment">
                         <em>There is currently no quote history.</em>  
                     </div>
                 <%} else {%>
-                    <%client.quoteHistory.forEach(quote => {%>
+                    <%let index = 0%>
+                    <%for(quote in client.quoteHistory) {%>
+                        <%if(index > 2) {%>
+                            <%break;%>
+                        <%}%>
                         <div class="ui segment">
-                            <strong>Order No. </strong>
-                            <span class="quoteInfo">#<%=quote._id%></span>
+                            <strong>Order Date: </strong>
+                            <span class="quoteInfo">#<%=quote.deliverydate%></span>
                         </div>
-                    <%});%>
+                        <%index++;%>
+                    <%}%>
+                    <div class="ui segment">...</div>
                 <%}%>
-            </div>
+            <div>
         </div>
     </div>
 </div>
