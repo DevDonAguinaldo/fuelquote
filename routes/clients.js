@@ -91,7 +91,7 @@ router.post("/home/getaquote", (req, res) => {
         suggestedPrice: suggested,
         total: total,
     });
-    
+    console.log(newQuote);
     res.render('quotedetails', { 
         client: req.user, 
         quote: newQuote
@@ -107,7 +107,7 @@ router.get('/home/quotedetails', (req, res) => {
 });
 
 router.post('/home/quotedetails', (req, res) => {
-    Client.findById(req.user._id, (err, client) => {
+    Client.findById(req.user._id).populate('quoteHistory').exec((err, client) => {
         if(err) {
             console.log(err);
         } else {
@@ -116,30 +116,15 @@ router.post('/home/quotedetails', (req, res) => {
                     console.log(err);
                     res.redirect('/clients/home/quotedetails');
                 } else {
+                    console.log(quote);
                     client.quoteHistory.push(quote);
                     quote.save();
                     client.save();
                     res.render('home', {
                         client: client,
-                        quote: quote
+                        quotes: client.quoteHistory,
                     });
                 }
-            });
-        }
-    });
-});
-
-// QUOTE HISTORY DETAILS
-router.get('/home/quotehistory', (req, res) => {
-    Client.findById(req.user._id).populate('quoteHistory').exec((err, client) => {
-        if(err) {
-            console.log(err);
-            res.redirect('/clients/home');
-        } else {
-            console.log('Successfully queried database for quote history.');
-            res.render('quotehistory', {
-                client: client,
-                quotes: client.quoteHistory
             });
         }
     });

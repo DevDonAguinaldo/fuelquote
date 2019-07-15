@@ -5,7 +5,6 @@
 <div class="ui container segment">
     <div class="ui first huge header" style="text-align: center;">My Dashboard</div>
     <a href="/clients/home/getaquote" class="ui inverted orange button" id="gaq">Get A Quote</a>
-    <!-- <a href="/clients/home/quotehistory" class="ui inverted yellow button" id="gqh">Get Quote History</a> -->
     <div>
         <div class="ui horizontal segments">
             <div class="ui segment">
@@ -18,29 +17,41 @@
                 <strong>Username: </strong><%=client.username%>
             </div>
         </div>
-        <a href="/clients/home/quotehistory" class="ui blue inverted button" id="qhlink">Quote History</a>
-        <div class="ui horizontal segments">
-            <div class="ui vertical segments">
-                <%if(client.quoteHistory === undefined || client.quoteHistory == 0) {%>
-                    <div class="ui segment">
-                        <em>There is currently no quote history.</em>  
+        <h1><%=client.username%>'s Quote History</h1>
+        <%if(client.quoteHistory === undefined || client.quoteHistory === 0) {%>
+            <div class="ui segments">
+                <em>The is currently no quote history.</em>
+            </div>
+        <%} else {%>
+            <div class="ui segments">
+                <%quotes.forEach(quote => {%>
+                    <div class="ui inverted black segment">
+                        <strong>Date Ordered</strong>
+                        <span class="quoteInfo"><%=quote.orderdate%></span>
                     </div>
-                <%} else {%>
-                    <%let index = 0%>
-                    <%for(quote in client.quoteHistory) {%>
-                        <%if(index > 2) {%>
-                            <%break;%>
-                        <%}%>
-                        <div class="ui segment">
-                            <strong>Order Date: </strong>
-                            <span class="quoteInfo">#<%=quote.deliverydate%></span>
-                        </div>
-                        <%index++;%>
-                    <%}%>
-                    <div class="ui segment">...</div>
-                <%}%>
-            <div>
-        </div>
+                    <div class="ui segment">
+                        <label for="delDate"><strong>Delivery Date </strong></label>
+                        <span name="delDate" class="quoteInfo"><%=quote.deliverydate%></span>
+                    </div>
+                    <div class="ui segment">
+                        <label for="quoteAdd"><strong>Delivery Address </strong></label>
+                        <span name="quoteAdd" class="quoteInfo"><%=quote.address%></span>
+                    </div>
+                    <div class="ui segment">
+                        <label for="quoteGal"><strong>Gallons </strong></label>
+                        <span name="quoteGal" class="quoteInfo"><%=quote.gallons%></span>
+                    </div>
+                    <div class="ui segment">
+                        <label for="suggPrice"><strong>Suggested Price </strong></label>
+                        <span name="suggPrice" class="quoteInfo">$<%=quote.suggestedPrice%></span>
+                    </div>
+                    <div class="ui segment">
+                        <label for="quoteTotal"><strong>Total Amount </strong></label>
+                        <span name="quoteTotal" class="quoteInfo">$<%=quote.total%></span>
+                    </div>
+                <%});%>
+            </div>
+        <%}%>
     </div>
 </div>
 
