@@ -11,17 +11,7 @@ router.get("/home", (req, res) => {
     if (req.user.newAcc === true) {
         res.render('manage', { client: req.user });
     } else {
-        Client.findById(req.user._id).populate('quoteHistory').exec((err, client) => {
-            if(err) {
-                console.log(err);
-                res.redirect('/clients/home');
-            } else {
-                res.render('home', {
-                    client: client,
-                    quotes: client.quoteHistory
-                });
-            }
-        });
+        res.render('home', { client: req.user });
     }
 });
 
@@ -91,7 +81,7 @@ router.post("/home/getaquote", (req, res) => {
         suggestedPrice: suggested,
         total: total,
     });
-    console.log(newQuote);
+
     res.render('quotedetails', { 
         client: req.user, 
         quote: newQuote
@@ -116,7 +106,6 @@ router.post('/home/quotedetails', (req, res) => {
                     console.log(err);
                     res.redirect('/clients/home/quotedetails');
                 } else {
-                    console.log(quote);
                     client.quoteHistory.push(quote);
                     quote.save();
                     client.save();
@@ -125,6 +114,20 @@ router.post('/home/quotedetails', (req, res) => {
                         quotes: client.quoteHistory,
                     });
                 }
+            });
+        }
+    });
+});
+
+router.get('/home/quotehistory', (req, res) => {
+    Client.findById(req.user._id).populate('quoteHistory').exec((err, client) => {
+        if(err) {
+            console.log(err);
+            res.redirect('/clients/home');
+        } else {
+            res.render('quotehistory', {
+                client: client,
+                quotes: client.quoteHistory
             });
         }
     });

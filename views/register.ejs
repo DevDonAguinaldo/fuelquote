@@ -32,13 +32,29 @@
         <div class="field">
             <div class="ui checkbox">
                 <input type="checkbox" name="termsandconditions" required>
-                <label for="termsandconditions">I agree to the Terms and Conditions.</label>                
+                <label for="termsandconditions">I agree to the <a onclick="showTAC()">Terms and Conditions</a>.</label>                
             </div>
         </div>
         <%# Buttons %>
         <button type="submit" class="ui green inverted button">Submit</button>
         <a href="/" class="ui red inverted button">Cancel</a>
     </form>
+</div>
+
+<div class="ui modal">
+    <i class="close icon"></i>
+    <div class="header">Terms and Conditions</div>
+    <div class="content">
+        <p>
+            Some terms and conditions.
+        </p>
+    </div>
+    <div class="actions">
+        <div class="ui positive right labeled icon button">
+            Agree
+            <i class="checkmark icon"></i>
+        </div>
+    </div>
 </div>
 
 <% include partials/footer %>

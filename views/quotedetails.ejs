@@ -20,8 +20,8 @@
                 <input type="text" name="quote[orderdate]" id="orderdate" value="<%=quote.orderdate%>" readonly required>                
             </div>
             <div class="eight wide field">
-                <label for="quote[deliverydate]">Delivery Date</label>
-                <input type="text" name="quote[deliverydate]" value="<%=quote.deliverydate%>" readonly required>                
+                <label for="quote[delivery]">Delivery Date</label>
+                <input type="text" name="[deliverydate]" value="<%=quote.deliverydate%>" readonly required>                
             </div>
         </div>
         <%# PRICING %>
@@ -37,7 +37,7 @@
         </div>
         <%# BUTTONS %>
         <button type="submit" class="ui green inverted button">Save</button>
-        <a href="/clients/home" class="ui yellow inverted button">Edit</a>
+        <a href="/clients/home/getaquote" class="ui yellow inverted button">Edit</a>
     </form>
 </div>
 

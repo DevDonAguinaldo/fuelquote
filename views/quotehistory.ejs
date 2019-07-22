@@ -1,0 +1,40 @@
+<% include partials/header %>
+    <div class="ui container segment" id="container">
+        <a href="/clients/home" class="ui inverted red button"><i class="caret left icon"></i>Go Back</a>
+        <h1><%=client.username%>'s Quote History</h1>
+        <%if(client.quoteHistory === undefined || client.quoteHistory === 0) {%>
+            <div class="ui segments">
+                <em>The is currently no quote history.</em>
+            </div>
+        <%} else {%>
+            <%quotes.forEach(quote => {%>
+                <div class="ui segments">
+                    <div class="ui inverted black segment">
+                        <strong>Order No.</strong>
+                        <span class="quoteInfo"><%=quote._id%></span>
+                    </div>
+                    <div class="ui segment">
+                        <strong>Date Ordered</strong>
+                        <span class="quoteInfo"><%=quote.orderdate%></span>
+                    </div>
+                    <div class="ui segment">
+                        <label for="delDate"><strong>Delivery Date </strong></label>
+                        <span name="delDate" class="quoteInfo"><%=quote.deliverydate%></span>
+                    </div>
+                    <div class="ui segment">
+                        <label for="quoteAdd"><strong>Delivery Address </strong></label>
+                        <span name="quoteAdd" class="quoteInfo"><%=quote.address%></span>
+                    </div>
+                    <div class="ui segment">
+                        <label for="quoteGal"><strong>Gallons </strong></label>
+                        <span name="quoteGal" class="quoteInfo"><%=quote.gallons%></span>
+                    </div>
+                    <div class="ui segment">
+                        <label for="quoteTotal"><strong>Total Amount </strong></label>
+                        <span name="quoteTotal" class="quoteInfo">$<%=quote.total%></span>
+                    </div>
+                </div>
+            <%});%>
+        <%}%>
+    </div>
+<% include partials/header %>
