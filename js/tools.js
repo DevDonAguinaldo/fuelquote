@@ -6,7 +6,7 @@ module.exports = {
         return quoteHistory === undefined ? true : false;
     },
     inSummer: function(month) {
-        if(month === 5 || month === 6 || month === 7 || month === 8) 
+        if(month === 6 || month === 7 || month === 8) 
             return true;
         else 
             return false;
