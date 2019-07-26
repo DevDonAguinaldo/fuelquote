@@ -64,28 +64,44 @@ router.get("/home/getaquote", (req, res) => {
 
 router.post("/home/getaquote", (req, res) => {
     let newQuote;
-    let month = Number((req.body.quote.orderdate).substr(0, 2));
-    let suggested = price.getSuggestedPrice(req.user.address.state, month, req.user.quoteHistory, req.body.quote.gallons);
+    let orderMonth = Number((req.body.quote.orderdate).substring(0, 2));
+    let deliveryMonth = Number((req.body.quote.deliverydate).substring(0, 2));
+    let orderDay = Number((req.body.quote.orderdate).substring(3, 5));
+    let deliveryDay = Number((req.body.quote.deliverydate).substring(3, 5));
+    let suggested = price.getSuggestedPrice(req.user.address.state, orderMonth, req.user.quoteHistory, req.body.quote.gallons);
     let total = price.getTotal(req.body.quote.gallons, suggested);
 
-    newQuote = new Quote({
-        gallons: req.body.quote.gallons,
-        address: {
-            street: req.user.address.street,
-            city: req.user.address.city,
-            state: req.user.address.state,
-            zipcode: req.user.address.zipcode     
-        },
-        orderdate: req.body.quote.orderdate,
-        deliverydate: req.body.quote.deliverydate,
-        suggestedPrice: suggested,
-        total: total,
-    });
+    console.log(orderMonth + " " + orderDay);
+    console.log(deliveryMonth + ' ' + deliveryDay);
 
-    res.render('quotedetails', { 
-        client: req.user, 
-        quote: newQuote
-    });
+    if(orderMonth > deliveryMonth) {
+        console.log("Error - Invalid delivery month.");
+        res.redirect('/clients/home/getaquote');
+    } else {
+        if(orderDay > deliveryDay) {
+            console.log("Error - Invalid delivery day.");
+            res.redirect('/clients/home/getaquote');
+        } else {
+            newQuote = new Quote({
+                gallons: req.body.quote.gallons,
+                address: {
+                    street: req.user.address.street,
+                    city: req.user.address.city,
+                    state: req.user.address.state,
+                    zipcode: req.user.address.zipcode     
+                },
+                orderdate: req.body.quote.orderdate,
+                deliverydate: req.body.quote.deliverydate,
+                suggestedPrice: suggested,
+                total: total,
+            });
+        
+            res.render('quotedetails', { 
+                client: req.user, 
+                quote: newQuote
+            });
+        }
+    }
 });
 
 // SHOW QUOTE DETAILS

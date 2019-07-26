@@ -8,7 +8,7 @@ const QuoteSchema = new mongoose.Schema({
     address: String,
     orderdate: {
         type: String,
-        default: Date()
+        default: Date
     },
     deliverydate: {
         type: String,
