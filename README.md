@@ -9,7 +9,7 @@ the project directory and run the command 'node <nameofindexfile>.js'. It will b
 
 Our project is hosted on Heroku and can be accessed through the url: 'https://fuelquote-project.herokuapp.com'.
 
-View source code via Github: 'https://github.com/DevDonAguinaldo/cosc4353_project'.
+View source code via Github: 'https://github.com/DevDonAguinaldo/fuelquote'.
 
 Project Details: 
 {
