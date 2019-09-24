@@ -1,5 +1,7 @@
-# cosc4353_project
-Final project for software design class. Utilizes technologies such as HTML/CSS/JS, Node.js - Express, and MongoDB.
+# Fuel Quote
+A website to calculate a price on the amount of fuel ordered and provide a quote for customers.
+
+Utilizes technologies such as HTML/CSS/JS, Node.js - Express, and MongoDB.
 
 To start up project locally you need to run mongodb and have nodejs installed. Once MongoDB is installed locally,
 you then start the mongo server with './mongod' in the command line in the directory it was installed. Then cd into
