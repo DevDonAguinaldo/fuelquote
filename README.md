@@ -11,6 +11,7 @@ Our project is hosted on Heroku and can be accessed through the url: 'https://fu
 
 View source code via Github: 'https://github.com/DevDonAguinaldo/fuelquote'.
 
+<code>
 Project Details: 
 {
   "name": "project",
@@ -49,3 +50,4 @@ Project Details:
   ],
   "license": "ISC"
 }
+<code>
